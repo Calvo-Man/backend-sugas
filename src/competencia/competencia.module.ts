@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { CompetenciaService } from './competencia.service';
 import { CompetenciaController } from './competencia.controller';
@@ -8,5 +9,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   imports: [TypeOrmModule.forFeature([Competencia])],
   controllers: [CompetenciaController],
   providers: [CompetenciaService],
+  exports: [CompetenciaService],
 })
 export class CompetenciaModule {}

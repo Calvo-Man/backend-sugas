@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -8,6 +9,7 @@ import { CompetenciaModule } from './competencia/competencia.module';
 import { Competencia } from './competencia/entities/competencia.entity';
 import { ResultadosModule } from './resultados/resultados.module';
 import { Resultado } from './resultados/entities/resultado.entity';
+import { ProgramaCompetenciasModule } from './programa-competencias/programa-competencias.module';
 
 
 @Module({
@@ -17,14 +19,15 @@ import { Resultado } from './resultados/entities/resultado.entity';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '',
+      password: '12345678',
       database: 'gguias',
       entities: [Programa, Competencia, Resultado],
       synchronize: true,
     }),
     ProgramaModule,
     CompetenciaModule,
-    ResultadosModule],
+    ResultadosModule,
+    ProgramaCompetenciasModule],
   controllers: [AppController],
   providers: [AppService],
 })

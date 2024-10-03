@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { ProgramaService } from './programa.service';
 import { CreateProgramaDto } from './dto/create-programa.dto';
@@ -20,6 +21,10 @@ export class ProgramaController {
   @Get('codigo/:id')
   findOne(@Param('id') id: string) {
     return this.programaService.findOne(id);
+  }
+  @Get(':id/competencias')
+  async getCompetenciasPorPrograma(@Param('id') programaId: string) {
+    return this.programaService.getCompetenciasPorPrograma(+programaId);
   }
 
   @Patch(':id')

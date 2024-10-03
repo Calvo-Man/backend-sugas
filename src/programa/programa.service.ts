@@ -1,9 +1,11 @@
+/* eslint-disable prettier/prettier */
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateProgramaDto } from './dto/create-programa.dto';
 import { UpdateProgramaDto } from './dto/update-programa.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Programa } from './entities/programa.entity';
 import { Repository } from 'typeorm';
+import { Competencia } from 'src/competencia/entities/competencia.entity';
 
 @Injectable()
 export class ProgramaService {
@@ -32,6 +34,21 @@ export class ProgramaService {
 
   findOne(codigo: string): Promise<Programa> {
     return this.programaRepository.findOne({ where: { codigo }, relations: ['competencias'] });
+  }
+  async getCompetenciasPorPrograma(programaId: number): Promise<Competencia[]> {
+    if (!programaId) {
+      programaId = 1;
+    }
+    const programa = await this.programaRepository.findOne({
+      where: { id: programaId },
+      relations: ['competencias'], // Asegúrate de tener la relación configurada correctamente
+    });
+
+    return programa ? programa.competencias : [];
+  }
+
+  findOneById(id: number): Promise<Programa> {
+    return this.programaRepository.findOne({ where: { id }, relations: ['competencias'] });
   }
  
 

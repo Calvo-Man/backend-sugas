@@ -1,6 +1,7 @@
+/* eslint-disable prettier/prettier */
 import { Programa } from "src/programa/entities/programa.entity";
 import { Resultado } from "src/resultados/entities/resultado.entity";
-import { Column, Entity, Index, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, Index, ManyToMany,  OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 @Index("IDX_COMPETENCIA_CODIGO", ["codigo"], { unique: true })

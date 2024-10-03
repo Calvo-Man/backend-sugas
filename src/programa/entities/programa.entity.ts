@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Competencia } from "src/competencia/entities/competencia.entity";
 import { Column, Entity, Index, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
