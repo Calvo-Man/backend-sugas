@@ -45,7 +45,7 @@ export class ProgramaCompetenciasService {
   
     // Combinar las competencias existentes con las nuevas
     programa.competencias = [...competenciasExistentes, ...competencias];
-  
+    
     // Cargar el programa con las competencias combinadas
     const programaCompetencia = await this.programaRepository.preload({
       id: programa.id, // Preload busca el registro por su ID

@@ -28,8 +28,8 @@ export class ProgramaCompetenciasController {
     return this.programaCompetenciasService.update(+id, updateProgramaCompetenciaDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') idPrograma: string, @Body(
+  @Delete(':id/competencia/:idCompetencia')
+  remove(@Param('id') idPrograma: string, @Param(
     'idCompetencia',
   ) idCompetencia: string,) {
     return this.programaCompetenciasService.removeCompetencia(+idPrograma, +idCompetencia);

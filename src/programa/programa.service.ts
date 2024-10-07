@@ -17,9 +17,9 @@ export class ProgramaService {
   
   async create(createProgramaDto: CreateProgramaDto): Promise<Programa> {
     
-    const pro = this.programaRepository.create(createProgramaDto);
+    const programa = this.programaRepository.create(createProgramaDto);
     try{
-    return this.programaRepository.save(pro);
+    return this.programaRepository.save(programa);
     }
     catch (error) {
       if (error.code === 'ER_DUP_ENTRY') {

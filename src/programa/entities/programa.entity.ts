@@ -8,10 +8,10 @@ export class Programa {
     @PrimaryGeneratedColumn()
     id: number;
   
-    @Column({ length: 80 })
+    @Column({ length: 80, unique: true })
     nombre: string;
   
-    @Column({ length: 20 })
+    @Column({ length: 20,unique: true })
     codigo: string;
 
     @Column()
