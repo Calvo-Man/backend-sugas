@@ -19,18 +19,18 @@ export class ProgramaController {
   }
 
   @Get()
-  @Roles('admin','user')
+  @Roles('admin','instructor')
   findAll() {
     return this.programaService.findAll();
   }
 
   @Get('codigo/:id')
-  @Roles('admin','user')
+  @Roles('admin','instructor')
   findOne(@Param('id') id: string) {
     return this.programaService.findOne(id);
   }
   @Get(':id/competencias')
-  @Roles('admin','user')
+  @Roles('admin','instructor')
   async getCompetenciasPorPrograma(@Param('id') programaId: string) {
     return this.programaService.getCompetenciasPorPrograma(+programaId);
   }

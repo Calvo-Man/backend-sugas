@@ -6,12 +6,14 @@ import { UserService } from 'src/user/user.service';
 import { RegisterAuthDto } from './dto/register.dto';
 import { LoginAuthDto } from './dto/login.dto';
 import { RolesService } from 'src/roles/roles.service';
+import { ProgramaService } from 'src/programa/programa.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly userService: UserService,
     private readonly rolesService: RolesService,
+    private readonly programaService:ProgramaService,
     private readonly JwtService:JwtService
 
   ) {}
@@ -20,16 +22,20 @@ export class AuthService {
     if (user) {
       throw new BadRequestException('Email already exists');
     }
-
     const role = await this.rolesService.findOne(registerAuthDto.role);
     if (!role) {
       throw new BadRequestException('Role not found');
     }
+    // const programas = await this.programaService.findProgramasByIds(registerAuthDto.programa);
+    // if (!programas) {
+    //   throw new BadRequestException('Programa not found');
+    // }
     const hashedPassword = await bcryptjs.hash(registerAuthDto.password, 10);
 
     return await this.userService.create({
       ...registerAuthDto,
       password: hashedPassword,
+
     });
   }
 

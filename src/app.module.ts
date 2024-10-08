@@ -13,6 +13,7 @@ import { UserModule } from './user/user.module';
 import { RolesModule } from './roles/roles.module';
 
 import { AuthGuardModule } from './auth/auth.module';
+import { RoleSeedModule } from './roles/rol-seed.module';
 
 
 @Module({
@@ -36,7 +37,7 @@ import { AuthGuardModule } from './auth/auth.module';
     UserModule,
     RolesModule,
     AuthGuardModule,
-    AuthGuardModule
+    RoleSeedModule
   ],
   controllers: [AppController],
   providers: [AppService],

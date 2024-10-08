@@ -4,7 +4,7 @@ import { CreateProgramaDto } from './dto/create-programa.dto';
 import { UpdateProgramaDto } from './dto/update-programa.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Programa } from './entities/programa.entity';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { Competencia } from 'src/competencia/entities/competencia.entity';
 
 @Injectable()
@@ -28,12 +28,20 @@ export class ProgramaService {
     }
   }
 
-  findAll(): Promise<Programa[]> {
-    return this.programaRepository.find({ relations: ['competencias'] });
+ async findAll(): Promise<Programa[]> {
+    return await this.programaRepository.find({ relations: ['competencias'] });
+  }
+  async findProgramasByIds( programasIds: number[]): Promise<Programa[]> {
+    return await this.programaRepository.find({
+      where: {
+        id: In(programasIds),
+      },
+    
+    });
   }
 
-  findOne(codigo: string): Promise<Programa> {
-    return this.programaRepository.findOne({ where: { codigo }, relations: ['competencias'] });
+  async findOne(codigo: string): Promise<Programa> {
+    return await this.programaRepository.findOne({ where: { codigo }, relations: ['competencias'] });
   }
   async getCompetenciasPorPrograma(programaId: number): Promise<Competencia[]> {
     if (!programaId) {

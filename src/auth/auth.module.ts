@@ -8,6 +8,7 @@ import { AuthService } from "./auth.service";
 
 import { UserModule } from "src/user/user.module";
 import { RolesModule } from 'src/roles/roles.module';
+import { ProgramaModule } from 'src/programa/programa.module';
 
 @Module({
   imports: [
@@ -18,7 +19,8 @@ import { RolesModule } from 'src/roles/roles.module';
       signOptions: { expiresIn: "1d" },
     }),
     UserModule,
-    RolesModule
+    RolesModule,
+    ProgramaModule
     ],
   controllers: [AuthController],
   providers: [AuthService],

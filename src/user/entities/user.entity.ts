@@ -1,5 +1,6 @@
+import { Programa } from "src/programa/entities/programa.entity";
 import { Role } from "src/roles/entities/role.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class User {
@@ -20,6 +21,9 @@ export class User {
     
     @Column()
     password: string;
+
+    @ManyToMany(()=>Programa, (programa) => programa.users)
+    programa: Programa[]
 
     @ManyToOne(() => Role, (role) => role.users)
     role: Role

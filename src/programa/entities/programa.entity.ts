@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Competencia } from "src/competencia/entities/competencia.entity";
+import { User } from "src/user/entities/user.entity";
 import { Column, Entity, Index, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
@@ -20,4 +21,8 @@ export class Programa {
     @ManyToMany(() => Competencia, competencia => competencia.programas)
     @JoinTable()
     competencias: Competencia[];
+
+    @ManyToMany(() => User, user => user.programa)
+    @JoinTable()
+    users: User
 }

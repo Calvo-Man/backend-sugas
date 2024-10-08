@@ -1,5 +1,5 @@
 import { Transform } from "class-transformer";
-import { IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsArray, IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 
 export class RegisterAuthDto {
     @IsNotEmpty()
@@ -22,6 +22,11 @@ export class RegisterAuthDto {
     @IsString()
     @Transform(({ value }) => value.trim())
     password: string;
+
+    @IsOptional()
+    @IsArray()
+    @IsNumber({}, { each: true }) // Valida que cada elemento sea un número
+    programa?: number[];
 
     @IsNotEmpty()
     @IsNumber()
