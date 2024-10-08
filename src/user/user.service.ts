@@ -1,3 +1,4 @@
+
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -15,12 +16,16 @@ export class UserService {
     return await this.userRepository.save(user);
   }
 
+ 
   findAll() {
     return `This action returns all user`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: number) {
+    return await this.userRepository.findOne({
+      where: { id },
+      relations: ['programa'],
+    });
   }
   async findByEmail(email: string) {
     return await this.userRepository.findOne({

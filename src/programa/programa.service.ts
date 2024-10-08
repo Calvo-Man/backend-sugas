@@ -43,6 +43,7 @@ export class ProgramaService {
   async findOne(codigo: string): Promise<Programa> {
     return await this.programaRepository.findOne({ where: { codigo }, relations: ['competencias'] });
   }
+ 
   async getCompetenciasPorPrograma(programaId: number): Promise<Competencia[]> {
     if (!programaId) {
       programaId = 1;
