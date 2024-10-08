@@ -45,9 +45,7 @@ export class ProgramaService {
   }
  
   async getCompetenciasPorPrograma(programaId: number): Promise<Competencia[]> {
-    if (!programaId) {
-      programaId = 1;
-    }
+    
     const programa = await this.programaRepository.findOne({
       where: { id: programaId },
       relations: ['competencias'], // Asegúrate de tener la relación configurada correctamente

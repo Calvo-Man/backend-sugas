@@ -26,10 +26,7 @@ export class AuthService {
     if (!role) {
       throw new BadRequestException('Role not found');
     }
-    // const programas = await this.programaService.findProgramasByIds(registerAuthDto.programa);
-    // if (!programas) {
-    //   throw new BadRequestException('Programa not found');
-    // }
+    
     const hashedPassword = await bcryptjs.hash(registerAuthDto.password, 10);
 
     return await this.userService.create({
@@ -66,7 +63,8 @@ export class AuthService {
     }
     return {
       access_token: token,
-      rol:payload.rol
+      rol:payload.rol,
+      id:payload.id
     };
 
   }
